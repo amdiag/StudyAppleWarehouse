@@ -2,10 +2,17 @@ package com.amdiag.appleWarehouse;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class AppleWarehouse {
 
     private List<Apple> apples = getAllApples();
+
+    public List<Apple> findAllGreenApple(){
+        return apples.stream().filter(apple -> "green".equals(apple.getColor())).collect(Collectors.toList());
+    }
+
+
 
     private List<Apple> getAllApples() {
         List<Apple> apples = new ArrayList<>();
