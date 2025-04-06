@@ -12,6 +12,18 @@ public class AppleWarehouse {
         return apples.stream().filter(apple -> color.equals(apple.getColor())).collect(Collectors.toList());
     }
 
+    public String checkWeight( Apple apple ){
+        if (apple.getWeight() > 150){
+            return "Heavy";
+        }else{
+            return "Light";
+        }
+    }
+
+    public List<Apple> findApplesHeavierThen( int weight ){
+        return apples.stream().filter(apple -> apple.getWeight() > weight).collect(Collectors.toList());
+    }
+
     private List<Apple> getAllApples() {
         List<Apple> apples = new ArrayList<>();
         apples.add(new Apple("red", 100));
@@ -24,5 +36,6 @@ public class AppleWarehouse {
         apples.add(new Apple("yellow", 170));
         return apples;
     }
+
 
 }

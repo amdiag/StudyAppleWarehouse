@@ -16,13 +16,19 @@ public class AppleWarehouseTest {
     @Mock
     private AppleWarehouse appleWarehouse;
 
+    private AppleWarehouse warehouse = new AppleWarehouse();
+    private Apple apple100gr;
+    private Apple apple200gr;
+
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
+        apple100gr = new Apple("green", 100);
+        apple200gr = new Apple("green", 200);
     }
 
     @Test
-    public void testfindApplesByColorGreen() {
+    public void testFindApplesByColorGreen() {
         final String color = "green";
         List<Apple> expectedGreenApples = new ArrayList<>();
         expectedGreenApples.add(new Apple(color, 200));
@@ -55,7 +61,6 @@ public class AppleWarehouseTest {
     @Test
     public void testFindApplesByColorGreenSimple() {
         final String color = "green";
-        AppleWarehouse warehouse = new AppleWarehouse();
         List<Apple> greenApples = warehouse.findApplesByColor(color);
         assertEquals(3, greenApples.size());
     }
@@ -63,7 +68,6 @@ public class AppleWarehouseTest {
     @Test
     public void testFindApplesByColorRedSimple() {
         final String color = "red";
-        AppleWarehouse warehouse = new AppleWarehouse();
         List<Apple> redApples = warehouse.findApplesByColor(color);
         assertEquals(3, redApples.size());
     }
@@ -71,8 +75,24 @@ public class AppleWarehouseTest {
     @Test
     public void testFindApplesByColorYellowSimple() {
         final String color = "yellow";
-        AppleWarehouse warehouse = new AppleWarehouse();
         List<Apple> yellowApples = warehouse.findApplesByColor(color);
         assertEquals(2, yellowApples.size());
     }
+
+    @Test
+    public void shouldFindApplesHeavierThen() {
+        List<Apple> applesHeavierThen150 = warehouse.findApplesHeavierThen(150);
+        assertEquals(applesHeavierThen150.size(), 4);
+    }
+
+    @Test
+    public void shouldFindApplesLighterThen100() {
+        assertEquals("Light", warehouse.checkWeight(apple100gr));
+    }
+
+    @Test
+    public void shouldFindApplesHeavierThen200() {
+        assertEquals("Heavy", warehouse.checkWeight(apple200gr));
+    }
+
 }
