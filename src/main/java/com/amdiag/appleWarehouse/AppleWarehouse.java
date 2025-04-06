@@ -8,11 +8,9 @@ public class AppleWarehouse {
 
     private List<Apple> apples = getAllApples();
 
-    public List<Apple> findAllGreenApple(){
-        return apples.stream().filter(apple -> "green".equals(apple.getColor())).collect(Collectors.toList());
+    public List<Apple> findApplesByColor( String color ){
+        return apples.stream().filter(apple -> color.equals(apple.getColor())).collect(Collectors.toList());
     }
-
-
 
     private List<Apple> getAllApples() {
         List<Apple> apples = new ArrayList<>();
